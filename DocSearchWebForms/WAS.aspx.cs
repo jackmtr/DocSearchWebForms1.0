@@ -7,18 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace DocSearchWebForms
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class WAS : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void ClientIdButton_Click(object sender, EventArgs e)
-        {
-            string clientNum = ClientId.Text;
-
-            Response.Redirect("WAS.aspx?clientId=" + clientNum, true);
         }
     }
 }
