@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainTemplate.master.cs" Inherits="DocSearchWebForms.MainTemplate" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- with runa t="serv er", server now accessible through server side code -->
+<head runat="server">
+    <title>Westland Archiving System</title>
+    <!--runa t="se rver" makes it a web server control-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Styles/Styles.css" rel="stylesheet" />
+</head>
+<body>
+    <!--Form tag is with the master page, not with each content page-->
+    <form id="form1" runat="server">
+        
+    <div id="topBanner">
+        <a href="#"><img src="Images/logo.png" /></a>
+    </div>
+
+    <div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
