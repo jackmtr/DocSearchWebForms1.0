@@ -24,6 +24,17 @@ namespace DocSearchWebForms
             ClientName.Text = _db.tbl_Folder.SingleOrDefault(folder => folder.Number == clientId).Name;
             ClientIdNum.Text = _db.tbl_Folder.SingleOrDefault(folder => folder.Number == clientId).Number.ToString();
             folderId = _db.tbl_Folder.SingleOrDefault(folder => folder.Number == clientId).Folder_ID;
+
+            //temp list to practice with
+            List<string> fakeNav = new List<string>();
+            fakeNav.Add("Corrospondance");
+            fakeNav.Add("Enhancements");
+
+            TempListBox.DataSource = fakeNav;
+            TempListBox.DataBind();
+            //set enter outside of input to submit page.
+            Page.SetFocus(SearchBoxInput);
+            // defaultbutton="SearchBoxBtn" defaultfocus="SearchBoxInput"
         }
 
         protected void SearchBoxBtn_Click(object sender, EventArgs e)
