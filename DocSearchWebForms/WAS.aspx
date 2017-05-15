@@ -10,6 +10,9 @@
     <asp:Label ID="ClientId" runat="server" Text="Client Id: "></asp:Label>
     <asp:Label ID="ClientIdNum" runat="server"></asp:Label>
     <br />
+
+    <asp:ListBox ID="TempListBox" runat="server"></asp:ListBox>
+
     <asp:Label ID="Label2" runat="server" Text="Search Description: "></asp:Label>
     <asp:TextBox ID="SearchBoxInput" runat="server"></asp:TextBox>
     <asp:Label ID="Label3" runat="server" Text="Year:"></asp:Label>
@@ -98,8 +101,6 @@
         <asp:ListItem>2017</asp:ListItem>
     </asp:DropDownList>
     <asp:Button ID="SearchBoxBtn" runat="server" OnClick="SearchBoxBtn_Click" Text="Filter and Search" />
-
-    <asp:ListBox ID="TempListBox" runat="server"></asp:ListBox>
 
     <asp:GridView ID="GridView1" runat="server" ItemType="DocSearchWebForms.Models.PublicVM" DataKeyNames="Folder_ID" SelectMethod="SelectAll" AutoGenerateColumns="false">
         <Columns>

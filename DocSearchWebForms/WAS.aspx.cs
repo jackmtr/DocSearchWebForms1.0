@@ -25,13 +25,38 @@ namespace DocSearchWebForms
             ClientIdNum.Text = _db.tbl_Folder.SingleOrDefault(folder => folder.Number == clientId).Number.ToString();
             folderId = _db.tbl_Folder.SingleOrDefault(folder => folder.Number == clientId).Folder_ID;
 
-            //temp list to practice with
-            List<string> fakeNav = new List<string>();
-            fakeNav.Add("Corrospondance");
-            fakeNav.Add("Enhancements");
 
-            TempListBox.DataSource = fakeNav;
+            //**Populates the navbar
+            IEnumerable<PublicVM> nb = SelectAll().OrderBy(f => f.CategoryName).GroupBy(f => f.CategoryName).Select(g => g.First());
+            //Populating the navbar
+            List<NavBar> nbl = new List<NavBar>();
+
+            foreach (PublicVM pvm in nb) {
+                NavBar nbitem = new NavBar();
+
+                nbitem.CategoryName = pvm.CategoryName;
+
+                foreach (PublicVM pp in SelectAll().GroupBy(g => g.DocumentTypeName).Select(g => g.First()))
+                {
+                    if (pp.CategoryName == nbitem.CategoryName && !nbl.Any(s => s.DocumentTypeName.Contains(pp.DocumentTypeName)))
+                    {
+                        nbitem.DocumentTypeName.Add(pp.DocumentTypeName);
+                    }
+                }
+                nbl.Add(nbitem);
+            }
+
+            TempListBox.DataSource = nbl;
+            TempListBox.DataTextField = "CategoryName";
+            TempListBox.DataValueField = "CategoryName";
+
+
+            //TempListBox.DataSource = nbl.Select(x => x.DocumentTypeName.ToString());
+
+
+
             TempListBox.DataBind();
+
             //set enter outside of input to submit page.
             Page.SetFocus(SearchBoxInput);
             // defaultbutton="SearchBoxBtn" defaultfocus="SearchBoxInput"
@@ -100,6 +125,11 @@ namespace DocSearchWebForms
             }
 
             return PublicVMList;
+        }
+
+        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+        {
+
         }
     }
 }
